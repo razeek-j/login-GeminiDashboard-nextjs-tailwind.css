@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      colors: {
+        
+      },
       fontFamily :{
         Poppins: ['var--font-poppins']
       },
