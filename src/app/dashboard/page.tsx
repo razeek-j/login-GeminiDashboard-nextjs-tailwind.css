@@ -1,4 +1,8 @@
-import { CameraIcon as SolidCameraIcon, MicrophoneIcon as SolidMicrophoneIcon, PencilSquareIcon, MegaphoneIcon, GlobeAltIcon, StarIcon } from '@heroicons/react/24/solid';
+// src/app/dashboard/page.tsx
+
+import React from 'react';
+import { HiOutlineSquares2X2 } from 'react-icons/hi2';  // Importing from react-icons v2
+import { CameraIcon, MicrophoneIcon, PencilSquareIcon, MegaphoneIcon, GlobeAltIcon, StarIcon, UserCircleIcon } from '@heroicons/react/24/outline';  // Using v2 icons directly
 import SideBar from '@/components/SideBar';
 
 export default function Dashboard() {
@@ -6,8 +10,13 @@ export default function Dashboard() {
     <div className="bg-white h-screen flex">
       <SideBar />
       <div className="flex-1 flex flex-col p-8">
-        <div className="mb-8">
-          <p className="text-xl text-gray-600">Gemini</p>
+        <div className="flex justify-between items-center mb-4">
+          <div className="text-xl text-gray-600">Gemini</div>
+          <div className="flex items-center space-x-4">
+            {/* Add your icons here */}
+            <HiOutlineSquares2X2 className="w-6 h-6 text-gray-400" />
+            <UserCircleIcon className="w-10 h-10 rounded-full" />
+          </div>
         </div>
         <div className="flex-1 flex flex-col mx-80">
           <div className="text-left mb-6">
@@ -41,10 +50,13 @@ export default function Dashboard() {
               style={{ paddingTop: '10px', paddingBottom: '10px' }}
             />
             <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex space-x-2">
-              <SolidCameraIcon className="w-6 h-6 text-gray-400 cursor-pointer" />
-              <SolidMicrophoneIcon className="w-6 h-6 text-gray-400 cursor-pointer" />
+              <CameraIcon className="w-6 h-6 text-gray-400 cursor-pointer" />
+              <MicrophoneIcon className="w-6 h-6 text-gray-400 cursor-pointer" />
             </div>
           </div>
+          <p className="text-xs text-gray-500 mt-2 text-center">
+            Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy and Gemini Apps.
+          </p>
         </div>
       </div>
     </div>

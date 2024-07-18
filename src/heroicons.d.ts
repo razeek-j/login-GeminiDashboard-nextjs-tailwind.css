@@ -1,10 +1,16 @@
-declare module '@heroicons/react/solid' {
-  import { FunctionComponent, SVGProps } from 'react';
-  const CameraIcon: FunctionComponent<SVGProps<SVGSVGElement>>;
-  const MicrophoneIcon: FunctionComponent<SVGProps<SVGSVGElement>>;
-  const PencilIcon: FunctionComponent<SVGProps<SVGSVGElement>>;
-  const SpeakerphoneIcon: FunctionComponent<SVGProps<SVGSVGElement>>;
-  const GlobeIcon: FunctionComponent<SVGProps<SVGSVGElement>>;
-  const StarIcon: FunctionComponent<SVGProps<SVGSVGElement>>;
-  export { CameraIcon, MicrophoneIcon, PencilIcon, SpeakerphoneIcon, GlobeIcon, StarIcon };
+// heroicons-react-outline.d.ts
+
+declare module '@heroicons/react/outline' {
+  import { ComponentType } from 'react';
+
+  export const CameraIcon: ComponentType<{ className?: string; }>;
+  export const MicrophoneIcon: ComponentType<{ className?: string; }>;
+  export const PencilSquareIcon: ComponentType<{ className?: string; }>;
+  export const MegaphoneIcon: ComponentType<{ className?: string; }>;
+  export const GlobeAltIcon: ComponentType<{ className?: string; }>;
+  export const StarIcon: ComponentType<{ className?: string; }>;
+  export const UserCircleIcon: ComponentType<{ className?: string; }>;
+  export const SquaresIcon: ComponentType<{ className?: string; }>;
+
+  // Add other icons as needed
 }
