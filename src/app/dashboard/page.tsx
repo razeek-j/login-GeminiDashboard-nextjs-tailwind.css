@@ -1,5 +1,3 @@
-// src/app/dashboard/page.tsx
-
 import React from 'react';
 import { HiOutlineSquares2X2 } from 'react-icons/hi2';  // Importing from react-icons v2
 import { CameraIcon, MicrophoneIcon, PencilSquareIcon, MegaphoneIcon, GlobeAltIcon, StarIcon, UserCircleIcon } from '@heroicons/react/24/outline';  // Using v2 icons directly
@@ -13,7 +11,6 @@ export default function Dashboard() {
         <div className="flex justify-between items-center mb-4">
           <div className="text-xl text-gray-600">Gemini</div>
           <div className="flex items-center space-x-4">
-            {/* Add your icons here */}
             <HiOutlineSquares2X2 className="w-6 h-6 text-gray-400" />
             <UserCircleIcon className="w-10 h-10 rounded-full" />
           </div>
