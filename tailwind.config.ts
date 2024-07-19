@@ -1,14 +1,13 @@
 import type { Config } from "tailwindcss"
 
-const config = {
+const config: Config = {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
-  prefix: "",
+  ],
   theme: {
     container: {
       center: true,
@@ -19,14 +18,17 @@ const config = {
     },
     extend: {
       colors: {
-        
+        'dark-bg': '#000000', // pitch black
+        'dark-sidebar': '#2C2C2C', // dark grey for sidebar
+        'dark-card': '#1E1E1E', // slightly lighter black for cards
+        'light-icon': '#FFFFFF', // light white for icons and text
       },
-      fontFamily :{
+      fontFamily: {
         Poppins: ['var--font-poppins']
       },
     },
   },
   plugins: [],
-} satisfies Config
+}
 
-export default config
+export default config;
