@@ -11,7 +11,7 @@ export default function Dashboard() {
       <SideBar />
       <div className="flex-1 flex flex-col p-8 overflow-auto">
         <div className="flex justify-between items-center mb-4">
-          <div className="text-xl text-gray-600 dark:text-light-icon">Gemini</div>
+          <div className="text-xl text-gray-600 dark:text-light-icon">Smart Ally</div>
           <div className="flex items-center space-x-4">
             <HiOutlineSquares2X2 className="w-6 h-6 text-gray-400 dark:text-light-icon" />
             <UserCircleIcon className="w-10 h-10 rounded-full dark:text-light-icon" />
@@ -57,7 +57,7 @@ export default function Dashboard() {
             </div>
           </div>
           <p className="text-xs text-gray-500 dark:text-light-icon mt-2 text-center">
-            Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy and Gemini Apps.
+            Smart Ally may display inaccurate info, including about people, so double-check its responses. Your privacy and Yitro Tech Apps.
           </p>
         </div>
       </div>
