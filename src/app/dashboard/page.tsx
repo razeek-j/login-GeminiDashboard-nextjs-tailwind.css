@@ -1,11 +1,20 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { FaThLarge as HiOutlineSquares2X2, FaCamera as CameraIcon, FaMicrophone as MicrophoneIcon, FaPencilAlt as PencilSquareIcon, FaBullhorn as MegaphoneIcon, FaGlobe as GlobeAltIcon, FaStar as StarIcon, FaUserCircle as UserCircleIcon } from 'react-icons/fa';
 import SideBar from '@/components/SideBar';
 import DarkModeToggle from '@/components/DarkModeToggle';
+import { generateResponse } from '@/components/gemini';
 
 export default function Dashboard() {
+  const [prompt, setPrompt] = useState('');
+  const [response, setResponse] = useState('');
+
+  const handleSend = async () => {
+    const result = await generateResponse(prompt);
+    setResponse(result);
+  };
+
   return (
     <div className="bg-white dark:bg-dark-bg h-screen flex">
       <SideBar />
@@ -49,13 +58,21 @@ export default function Dashboard() {
                 className="w-full h-14 p-4 bg-stone-100 dark:bg-dark-card rounded-full shadow resize-none focus:outline-none placeholder-gray-400 dark:placeholder-gray-500 dark:text-light-icon"
                 placeholder="Enter your prompt here"
                 style={{ paddingTop: '16px', paddingBottom: '10px' }}
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
               />
               <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex space-x-2">
                 <CameraIcon className="w-6 h-6 text-gray-400 dark:text-light-icon cursor-pointer" />
                 <MicrophoneIcon className="w-6 h-6 text-gray-400 dark:text-light-icon cursor-pointer" />
+                <button onClick={handleSend} className="bg-blue-500 text-white p-2 rounded-full">Send</button>
               </div>
             </div>
           </div>
+          {response && (
+            <div className="mt-8 bg-stone-100 dark:bg-dark-card p-4 rounded-lg shadow max-w-4xl w-full">
+              <p className="text-gray-700 dark:text-light-icon">{response}</p>
+            </div>
+          )}
           <p className="text-xs text-gray-500 dark:text-light-icon mt-2 text-center">
             Smart Ally may display inaccurate info, including about people, so double-check its responses. Your privacy and Yitro Tech Apps.
           </p>
