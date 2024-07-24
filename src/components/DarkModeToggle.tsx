@@ -6,35 +6,27 @@ const DarkModeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const isSystemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const updateTheme = (isDark: boolean) => {
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        setIsDarkMode(true);
+      } else {
+        document.documentElement.classList.remove('dark');
+        setIsDarkMode(false);
+      }
+    };
+
     const localTheme = localStorage.getItem('theme');
+    const isSystemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     if (localTheme) {
-      if (localTheme === 'dark') {
-        document.documentElement.classList.add('dark');
-        setIsDarkMode(true);
-      } else {
-        document.documentElement.classList.remove('dark');
-        setIsDarkMode(false);
-      }
+      updateTheme(localTheme === 'dark');
     } else {
-      if (isSystemDarkMode) {
-        document.documentElement.classList.add('dark');
-        setIsDarkMode(true);
-      } else {
-        document.documentElement.classList.remove('dark');
-        setIsDarkMode(false);
-      }
+      updateTheme(isSystemDarkMode);
     }
 
     const handleSystemThemeChange = (e: MediaQueryListEvent) => {
-      if (e.matches) {
-        document.documentElement.classList.add('dark');
-        setIsDarkMode(true);
-      } else {
-        document.documentElement.classList.remove('dark');
-        setIsDarkMode(false);
-      }
+      updateTheme(e.matches);
     };
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', handleSystemThemeChange);
@@ -45,14 +37,17 @@ const DarkModeToggle = () => {
   }, []);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    if (isDarkMode) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    }
+    setIsDarkMode(prevIsDarkMode => {
+      const newIsDarkMode = !prevIsDarkMode;
+      if (newIsDarkMode) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+      return newIsDarkMode;
+    });
   };
 
   return (
