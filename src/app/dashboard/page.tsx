@@ -10,7 +10,7 @@ import {
   FaGlobe as GlobeAltIcon, 
   FaStar as StarIcon, 
   FaUserCircle as UserCircleIcon
- } from 'react-icons/fa';
+} from 'react-icons/fa';
 import SideBar from '@/components/SideBar';
 import DarkModeToggle from '@/components/DarkModeToggle';
 import { generateResponse } from '@/components/gemini';
@@ -21,9 +21,15 @@ type MessageType = {
   text: string;
 };
 
+type RecentChatType = {
+  firstPrompt: string;
+  messages: MessageType[];
+};
+
 export default function Dashboard() {
   const [prompt, setPrompt] = useState('');
   const [messages, setMessages] = useState<MessageType[]>([]);
+  const [recents, setRecents] = useState<RecentChatType[]>([]);
 
   const handleSend = async () => {
     const result = await generateResponse(prompt);
@@ -35,9 +41,24 @@ export default function Dashboard() {
     setPrompt('');
   };
 
+  const handleNewChat = () => {
+    if (messages.length > 0) {
+      const firstPrompt = messages.find((message) => message.type === 'prompt')?.text;
+      if (firstPrompt) {
+        setRecents((prevRecents) => [{ firstPrompt, messages: [...messages] }, ...prevRecents]);
+      }
+    }
+    setMessages([]);
+  };
+
+  const handleSelectRecent = (index: number) => {
+    const selectedChat = recents[index];
+    setMessages(selectedChat.messages);
+  };
+
   return (
     <div className="bg-white dark:bg-dark-bg h-screen flex">
-      <SideBar />
+      <SideBar recents={recents} onNewChat={handleNewChat} onSelectRecent={handleSelectRecent} />
       <div className="flex-1 flex flex-col p-8 overflow-auto">
         <div className="flex justify-between items-center mb-4">
           <div className="text-xl text-gray-600 dark:text-light-icon">Smart Ally</div>
@@ -103,7 +124,7 @@ export default function Dashboard() {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
             />
-            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex space-x-2">
+            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex space-x-3">
               <CameraIcon className="w-6 h-6 text-gray-400 dark:text-light-icon cursor-pointer" />
               <MicrophoneIcon className="w-6 h-6 text-gray-400 dark:text-light-icon cursor-pointer" />
               <button onClick={handleSend} className="bg-blue-500 text-white p-2 rounded-full">Send</button>

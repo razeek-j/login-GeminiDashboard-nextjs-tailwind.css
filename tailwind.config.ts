@@ -19,10 +19,10 @@ const config: Config = {
     },
     extend: {
       colors: {
-        'dark-bg': '#000000', // pitch black
-        'dark-sidebar': '#2C2C2C', // dark grey for sidebar
-        'dark-card': '#1E1E1E', // slightly lighter black for cards
-        'light-icon': '#FFFFFF', // light white for icons and text
+        'dark-bg': '#000000', 
+        'dark-sidebar': '#2C2C2C', 
+        'dark-card': '#1E1E1E', 
+        'light-icon': '#FFFFFF', 
       },
       fontFamily: {
         Poppins: ['var--font-poppins']
