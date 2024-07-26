@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   FaThLarge as HiOutlineSquares2X2, 
   FaCamera as CameraIcon, 
@@ -31,6 +31,15 @@ export default function Dashboard() {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [recents, setRecents] = useState<RecentChatType[]>([]);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const handleSend = async () => {
     const result = await generateResponse(prompt);
@@ -125,6 +134,7 @@ export default function Dashboard() {
                     )}
                   </div>
                 ))}
+                <div ref={messagesEndRef} />
               </div>
             )}
           </div>
