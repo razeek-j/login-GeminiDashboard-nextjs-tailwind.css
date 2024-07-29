@@ -149,9 +149,9 @@ export default function Dashboard() {
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
               />
-              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex space-x-3">
-                <CameraIcon className="w-6 h-6 text-gray-400 dark:text-light-icon cursor-pointer" />
-                <MicrophoneIcon className="w-6 h-6 text-gray-400 dark:text-light-icon cursor-pointer" />
+              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex space-x-5">
+                <CameraIcon className="w-6 h-8 text-gray-400 dark:text-light-icon cursor-pointer" />
+                <MicrophoneIcon className="w-4 h-8 text-gray-400 dark:text-light-icon cursor-pointer" />
                 <button onClick={handleSend} className="bg-blue-500 text-white p-2 rounded-full">Send</button>
               </div>
             </div>
